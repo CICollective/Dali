@@ -1,0 +1,226 @@
+:root {
+  --marble: #f4efe6;
+  --marble-dark: #e6ddc9;
+  --ink: #2a2420;
+  --gold: #c9a227;
+  --gold-bright: #e8c04a;
+  --purple: #4a3b6b;
+  --radius: 14px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at 50% -10%, #fbf7ee 0%, var(--marble) 45%, var(--marble-dark) 100%);
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', 'Iowan Old Style', serif;
+}
+
+.app-header {
+  text-align: center;
+  padding: 2.2rem 1rem 0.6rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2.6rem;
+  letter-spacing: 0.12em;
+  color: var(--purple);
+  text-shadow: 0 1px 0 #fff, 0 2px 6px rgba(74,59,107,0.15);
+}
+
+.subtitle {
+  margin: 0.35rem 0 0;
+  color: #6b6255;
+  font-style: italic;
+}
+
+.stage-wrap {
+  max-width: 720px;
+  margin: 1.4rem auto 0;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stage-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #12100e;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25), 0 0 0 6px #fff, 0 0 0 9px var(--gold);
+}
+
+#stage {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.active-badge {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  background: rgba(20, 16, 10, 0.55);
+  backdrop-filter: blur(3px);
+  color: #fff;
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  pointer-events: none;
+}
+
+.active-badge #activeName {
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: var(--gold-bright);
+  letter-spacing: 0.04em;
+}
+
+.active-badge #activeTagline {
+  font-size: 0.78rem;
+  opacity: 0.85;
+  font-style: italic;
+}
+
+.status {
+  min-height: 1.2em;
+  color: #6b6255;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.status.error { color: #a52a2a; font-weight: bold; }
+
+.controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn {
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.65rem 1.3rem;
+  border-radius: 999px;
+  border: 2px solid var(--gold);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: inline-block;
+}
+
+.btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 4px 10px rgba(201,162,39,0.35); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.btn.primary {
+  background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+  color: #2a2000;
+  font-weight: bold;
+}
+
+.picker {
+  max-width: 900px;
+  margin: 2rem auto 1rem;
+  padding: 0 1rem;
+}
+
+.picker h2 {
+  text-align: center;
+  color: var(--purple);
+  font-size: 1.3rem;
+  letter-spacing: 0.06em;
+}
+
+.deity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.7rem;
+}
+
+.deity-chip {
+  --aura: #c9a227;
+  font: inherit;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background: #fff;
+  padding: 0.7rem 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: left;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.deity-chip:hover { transform: translateY(-2px); }
+
+.deity-chip.active {
+  border-color: var(--aura);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--aura) 25%, transparent), 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.chip-name {
+  font-weight: bold;
+  color: var(--ink);
+}
+
+.chip-title {
+  font-size: 0.78rem;
+  color: #7a7264;
+}
+
+.result-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 16, 10, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 10;
+}
+
+.result-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1rem;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.result-card img {
+  max-width: 80vw;
+  max-height: 65vh;
+  border-radius: 10px;
+}
+
+.result-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.app-footer {
+  text-align: center;
+  color: #8a8272;
+  font-size: 0.8rem;
+  padding: 2rem 1rem 2.5rem;
+}
+
+.app-footer a { color: var(--purple); }
