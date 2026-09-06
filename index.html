@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pantheon — Become a Greek God</title>
+  <meta name="description" content="Hold up your camera and see yourself as a Greek god or goddess of your choice, in real time." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>Pantheon</h1>
+    <p class="subtitle">Hold up your camera. Choose your deity.</p>
+  </header>
+
+  <main class="stage-wrap">
+    <div class="stage-frame">
+      <video id="cam" playsinline muted hidden></video>
+      <canvas id="stage"></canvas>
+      <div class="active-badge">
+        <span id="activeName">Zeus</span>
+        <span id="activeTagline">Master of the sky and thunder</span>
+      </div>
+    </div>
+
+    <p id="status" class="status">Press “Start camera” to begin.</p>
+
+    <div class="controls">
+      <button id="startBtn" class="btn primary">Start camera</button>
+      <button id="captureBtn" class="btn" disabled>Capture photo</button>
+    </div>
+  </main>
+
+  <section class="picker">
+    <h2>Choose your god or goddess</h2>
+    <div id="deityGrid" class="deity-grid"></div>
+  </section>
+
+  <div id="result" class="result-overlay" hidden>
+    <div class="result-card">
+      <img id="resultImg" alt="Your captured deity photo" />
+      <div class="result-actions">
+        <a id="downloadBtn" class="btn primary" href="#">Save photo</a>
+        <button id="closeResult" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p>Runs entirely in your browser — no photo is ever uploaded anywhere. Face tracking by
+      <a href="https://developers.google.com/mediapipe" target="_blank" rel="noopener">MediaPipe</a>.</p>
+  </footer>
+
+  <script src="js/particles.js"></script>
+  <script src="js/deities.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
